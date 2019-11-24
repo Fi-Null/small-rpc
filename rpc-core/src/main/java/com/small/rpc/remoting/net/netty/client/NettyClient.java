@@ -1,8 +1,8 @@
-package com.small.rpc.net.netty.client;
+package com.small.rpc.remoting.net.netty.client;
 
-import com.small.rpc.net.Client;
-import com.small.rpc.net.ConnectClient;
-import com.small.rpc.net.param.RpcRequest;
+import com.small.rpc.remoting.net.Client;
+import com.small.rpc.remoting.net.ConnectClient;
+import com.small.rpc.remoting.net.param.RpcRequest;
 
 /**
  * @ClassName NettyClient

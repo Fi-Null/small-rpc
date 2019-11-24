@@ -1,7 +1,7 @@
 package com.small.rpc.remoting.invoker.call;
 
-import com.small.rpc.net.param.RpcFutureResponse;
-import com.small.rpc.net.param.RpcResponse;
+import com.small.rpc.remoting.net.param.RpcFutureResponse;
+import com.small.rpc.remoting.net.param.RpcResponse;
 import com.small.rpc.util.RpcException;
 
 import java.util.concurrent.ExecutionException;

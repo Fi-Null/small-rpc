@@ -1,8 +1,8 @@
-package com.small.rpc.net.netty.client;
+package com.small.rpc.remoting.net.netty.client;
 
-import com.small.rpc.net.param.HeartBeat;
-import com.small.rpc.net.param.RpcResponse;
 import com.small.rpc.remoting.invoker.RpcInvokerFactory;
+import com.small.rpc.remoting.net.param.HeartBeat;
+import com.small.rpc.remoting.net.param.RpcResponse;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.timeout.IdleStateEvent;
@@ -38,19 +38,15 @@ public class NettyClientHandler extends SimpleChannelInboundHandler<RpcResponse>
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        logger.error(">>>>>>>>>>> -rpc netty client caught exception", cause);
+        logger.error(">>>>>>>>>>> small-rpc netty client caught exception", cause);
         ctx.close();
     }
 
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
         if (evt instanceof IdleStateEvent) {
-			/*ctx.channel().close();      // close idle channel
-			logger.debug(">>>>>>>>>>> -rpc netty client close an idle channel.");*/
-
             nettyConnectClient.send(HeartBeat.BEAT_PING);    // beat N, close if fail(may throw error)
-            logger.debug(">>>>>>>>>>> -rpc netty client send beat-ping.");
-
+            logger.debug(">>>>>>>>>>> small-rpc netty client send beat-ping.");
         } else {
             super.userEventTriggered(ctx, evt);
         }

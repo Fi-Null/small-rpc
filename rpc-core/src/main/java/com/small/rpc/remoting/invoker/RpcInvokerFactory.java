@@ -1,8 +1,8 @@
 package com.small.rpc.remoting.invoker;
 
-import com.small.rpc.net.param.BaseCallback;
-import com.small.rpc.net.param.RpcFutureResponse;
-import com.small.rpc.net.param.RpcResponse;
+import com.small.rpc.remoting.net.param.BaseCallback;
+import com.small.rpc.remoting.net.param.RpcFutureResponse;
+import com.small.rpc.remoting.net.param.RpcResponse;
 import com.small.rpc.util.RpcException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -95,7 +95,7 @@ public class RpcInvokerFactory {
                             60L,
                             TimeUnit.SECONDS,
                             new LinkedBlockingQueue<>(1000),
-                            r -> new Thread(r, "small-rpc, XxlRpcInvokerFactory-responseCallbackThreadPool-" + r.hashCode()),
+                            r -> new Thread(r, "small-rpc, RpcInvokerFactory-responseCallbackThreadPool-" + r.hashCode()),
                             (r, executor) -> {
                                 throw new RpcException("small-rpc Invoke Callback Thread pool is EXHAUSTED!");
                             });        // default maxThreads 300, minThreads 60

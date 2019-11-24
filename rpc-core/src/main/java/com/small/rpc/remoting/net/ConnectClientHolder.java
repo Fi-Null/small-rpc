@@ -1,63 +1,25 @@
-package com.small.rpc.net;
+package com.small.rpc.remoting.net;
 
-import com.small.rpc.net.param.RpcRequest;
-import com.small.rpc.remoting.invoker.RpcInvokerFactory;
 import com.small.rpc.remoting.invoker.reference.RpcReferenceBean;
-import com.small.rpc.serialize.Serializer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * @ClassName ConnectClient
+ * @ClassName ConnectClientHolder
  * @Description TODO
  * @Author xiangke
- * @Date 2019/11/24 00:34
+ * @Date 2019/11/24 14:56
  * @Version 1.0
  **/
-public abstract class ConnectClient {
-
-    protected static transient Logger logger = LoggerFactory.getLogger(ConnectClient.class);
-
-    // ---------------------- iface ----------------------
-
-    public abstract void init(String address, final Serializer serializer, final RpcInvokerFactory rpcInvokerFactory) throws Exception;
-
-    public abstract void close();
-
-    public abstract boolean isValidate();
-
-    public abstract void send(RpcRequest RpcRequest) throws Exception;
-
-
-    // ---------------------- client pool map ----------------------
-
-    /**
-     * async send
-     */
-    public static void asyncSend(RpcRequest RpcRequest, String address,
-                                 Class<? extends ConnectClient> connectClientImpl,
-                                 final RpcReferenceBean RpcReferenceBean) throws Exception {
-
-        // client pool	[tips03 : may save 35ms/100invoke if move it to constructor, but it is necessary. cause by ConcurrentHashMap.get]
-        ConnectClient clientPool = ConnectClient.getPool(address, connectClientImpl, RpcReferenceBean);
-
-        try {
-            // do invoke
-            clientPool.send(RpcRequest);
-        } catch (Exception e) {
-            throw e;
-        }
-
-    }
+public class ConnectClientHolder {
 
     private static volatile ConcurrentMap<String, ConnectClient> connectClientMap;        // (static) alread addStopCallBack
     private static volatile ConcurrentMap<String, Object> connectClientLockMap = new ConcurrentHashMap<>();
 
-    private static ConnectClient getPool(String address, Class<? extends ConnectClient> connectClientImpl,
-                                         final RpcReferenceBean RpcReferenceBean) throws Exception {
+
+    public static ConnectClient getPool(String address, Class<? extends ConnectClient> connectClientImpl,
+                                        final RpcReferenceBean RpcReferenceBean) throws Exception {
 
         // init base compont, avoid repeat init
         if (connectClientMap == null) {
@@ -119,6 +81,7 @@ public abstract class ConnectClient {
 
             return connectClient_new;
         }
+
 
     }
 }

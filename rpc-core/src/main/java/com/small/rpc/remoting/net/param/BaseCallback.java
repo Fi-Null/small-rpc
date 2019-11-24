@@ -1,4 +1,4 @@
-package com.small.rpc.net.param;
+package com.small.rpc.remoting.net.param;
 
 /**
  * @ClassName BaseCallback

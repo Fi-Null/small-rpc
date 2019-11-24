@@ -1,4 +1,4 @@
-package com.small.rpc.net.param;
+package com.small.rpc.remoting.net.param;
 
 import com.small.rpc.remoting.invoker.RpcInvokerFactory;
 import com.small.rpc.remoting.invoker.call.RpcInvokeCallback;
@@ -41,10 +41,11 @@ public class RpcFutureResponse implements Future<RpcResponse> {
     }
 // ---------------------- response pool ----------------------
 
-    public void setInvokerFuture(){
+    public void setInvokerFuture() {
         this.invokerFactory.setInvokerFuture(request.getRequestId(), this);
     }
-    public void removeInvokerFuture(){
+
+    public void removeInvokerFuture() {
         this.invokerFactory.removeInvokerFuture(request.getRequestId());
     }
 
@@ -54,6 +55,7 @@ public class RpcFutureResponse implements Future<RpcResponse> {
     public RpcRequest getRequest() {
         return request;
     }
+
     public RpcInvokeCallback getInvokeCallback() {
         return invokeCallback;
     }
@@ -106,7 +108,7 @@ public class RpcFutureResponse implements Future<RpcResponse> {
                     if (timeout < 0) {
                         lock.wait();
                     } else {
-                        long timeoutMillis = (TimeUnit.MILLISECONDS==unit)?timeout:TimeUnit.MILLISECONDS.convert(timeout , unit);
+                        long timeoutMillis = (TimeUnit.MILLISECONDS == unit) ? timeout : TimeUnit.MILLISECONDS.convert(timeout, unit);
                         lock.wait(timeoutMillis);
                     }
                 } catch (InterruptedException e) {
@@ -116,7 +118,7 @@ public class RpcFutureResponse implements Future<RpcResponse> {
         }
 
         if (!done) {
-            throw new RpcException("-rpc, request timeout at:"+ System.currentTimeMillis() +", request:" + request.toString());
+            throw new RpcException("-rpc, request timeout at:" + System.currentTimeMillis() + ", request:" + request.toString());
         }
         return response;
     }

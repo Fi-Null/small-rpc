@@ -1,7 +1,7 @@
-package com.small.rpc.net;
+package com.small.rpc.remoting.net;
 
-import com.small.rpc.net.param.RpcRequest;
 import com.small.rpc.remoting.invoker.reference.RpcReferenceBean;
+import com.small.rpc.remoting.net.param.RpcRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

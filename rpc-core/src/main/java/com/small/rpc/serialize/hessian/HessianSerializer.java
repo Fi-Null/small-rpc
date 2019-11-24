@@ -19,7 +19,7 @@ import java.io.IOException;
 public class HessianSerializer implements Serializer {
 
     @Override
-    public <T> byte[] serialize(T obj){
+    public <T> byte[] serialize(T obj) {
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         Hessian2Output ho = new Hessian2Output(os);
         try {

@@ -1,4 +1,4 @@
-package com.small.rpc.net.netty.codec;
+package com.small.rpc.remoting.net.netty.codec;
 
 import com.small.rpc.serialize.Serializer;
 import io.netty.buffer.ByteBuf;
