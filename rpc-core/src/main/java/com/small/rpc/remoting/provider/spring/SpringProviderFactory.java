@@ -28,7 +28,7 @@ public class SpringProviderFactory extends RpcProviderFactory implements Applica
             for (Object serviceBean : serviceBeanMap.values()) {
                 // valid
                 if (serviceBean.getClass().getInterfaces().length == 0) {
-                    throw new RpcException("xxl-rpc, service(XxlRpcService) must inherit interface.");
+                    throw new RpcException("small-rpc, service(SmallRpcService) must inherit interface.");
                 }
                 // add service
                 SmallRpcService smallRpcService = serviceBean.getClass().getAnnotation(SmallRpcService.class);

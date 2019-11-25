@@ -9,7 +9,6 @@ package com.small.rpc.remoting.invoker.call;
  **/
 public enum CallType {
 
-
     SYNC,
 
     FUTURE,
@@ -17,7 +16,6 @@ public enum CallType {
     CALLBACK,
 
     ONEWAY;
-
 
     public static CallType match(String name, CallType defaultCallType) {
         for (CallType item : CallType.values()) {

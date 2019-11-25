@@ -3,7 +3,6 @@ package com.small.rpc.remoting.provider;
 import com.small.rpc.registry.ServiceRegistry;
 import com.small.rpc.remoting.net.Server;
 import com.small.rpc.remoting.net.netty.server.NettyServer;
-import com.small.rpc.remoting.net.param.BaseCallback;
 import com.small.rpc.remoting.net.param.RpcRequest;
 import com.small.rpc.remoting.net.param.RpcResponse;
 import com.small.rpc.serialize.Serializer;
@@ -130,16 +129,16 @@ public class RpcProviderFactory {
         }
 
         // init serializerInstance
-        this.serializerInstance = serializer.newInstance();
+        this.serializerInstance = serializer.getDeclaredConstructor().newInstance();
 
         // start server
         serviceAddress = IpUtil.getIpPort(this.ip, port);
-        serverInstance = server.newInstance();
+        serverInstance = server.getDeclaredConstructor().newInstance();
         // serviceRegistry started
         serverInstance.setStartedCallback(() -> {
             // start registry
             if (serviceRegistry != null) {
-                serviceRegistryInstance = serviceRegistry.newInstance();
+                serviceRegistryInstance = serviceRegistry.getDeclaredConstructor().newInstance();
                 serviceRegistryInstance.start(serviceRegistryParam);
                 if (serviceData.size() > 0) {
                     serviceRegistryInstance.registry(serviceData.keySet(), serviceAddress);
@@ -181,7 +180,7 @@ public class RpcProviderFactory {
      *
      * @param iface
      * @param version
-     * @return
+     * @return interfaceName#version
      */
     public static String makeServiceKey(String iface, String version) {
         String serviceKey = iface;

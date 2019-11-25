@@ -9,12 +9,12 @@ public interface ServiceRegistry {
     /**
      * start
      */
-    public abstract void start(Map<String, String> param);
+    void start(Map<String, String> param);
 
     /**
      * start
      */
-    public abstract void stop();
+    void stop();
 
 
     /**
@@ -24,7 +24,7 @@ public interface ServiceRegistry {
      * @param value service value/ip:port
      * @return
      */
-    public abstract boolean registry(Set<String> keys, String value);
+    boolean registry(Set<String> keys, String value);
 
 
     /**
@@ -34,7 +34,7 @@ public interface ServiceRegistry {
      * @param value
      * @return
      */
-    public abstract boolean remove(Set<String> keys, String value);
+    boolean remove(Set<String> keys, String value);
 
     /**
      * discovery services, for mult
@@ -42,7 +42,7 @@ public interface ServiceRegistry {
      * @param keys
      * @return
      */
-    public abstract Map<String, TreeSet<String>> discovery(Set<String> keys);
+    Map<String, TreeSet<String>> discovery(Set<String> keys);
 
     /**
      * discovery service, for one
@@ -50,5 +50,5 @@ public interface ServiceRegistry {
      * @param key service key
      * @return service value/ip:port
      */
-    public abstract TreeSet<String> discovery(String key);
+    TreeSet<String> discovery(String key);
 }

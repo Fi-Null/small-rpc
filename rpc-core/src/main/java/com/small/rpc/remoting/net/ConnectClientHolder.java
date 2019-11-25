@@ -19,7 +19,7 @@ public class ConnectClientHolder {
 
 
     public static ConnectClient getPool(String address, Class<? extends ConnectClient> connectClientImpl,
-                                        final RpcReferenceBean RpcReferenceBean) throws Exception {
+                                        final RpcReferenceBean rpcReferenceBean) throws Exception {
 
         // init base compont, avoid repeat init
         if (connectClientMap == null) {
@@ -28,7 +28,7 @@ public class ConnectClientHolder {
                     // init
                     connectClientMap = new ConcurrentHashMap<>();
                     // stop callback
-                    RpcReferenceBean.getInvokerFactory().addStopCallBack(() -> {
+                    rpcReferenceBean.getInvokerFactory().addStopCallBack(() -> {
                         if (connectClientMap.size() > 0) {
                             for (String key : connectClientMap.keySet()) {
                                 ConnectClient clientPool = connectClientMap.get(key);
@@ -72,7 +72,7 @@ public class ConnectClientHolder {
             // set pool
             ConnectClient connectClient_new = connectClientImpl.newInstance();
             try {
-                connectClient_new.init(address, RpcReferenceBean.getSerializerInstance(), RpcReferenceBean.getInvokerFactory());
+                connectClient_new.init(address, rpcReferenceBean.getSerializerInstance(), rpcReferenceBean.getInvokerFactory());
                 connectClientMap.put(address, connectClient_new);
             } catch (Exception e) {
                 connectClient_new.close();

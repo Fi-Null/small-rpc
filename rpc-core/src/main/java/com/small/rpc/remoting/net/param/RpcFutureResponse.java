@@ -118,7 +118,7 @@ public class RpcFutureResponse implements Future<RpcResponse> {
         }
 
         if (!done) {
-            throw new RpcException("-rpc, request timeout at:" + System.currentTimeMillis() + ", request:" + request.toString());
+            throw new RpcException("small-rpc, request timeout at:" + System.currentTimeMillis() + ", request:" + request.toString());
         }
         return response;
     }
