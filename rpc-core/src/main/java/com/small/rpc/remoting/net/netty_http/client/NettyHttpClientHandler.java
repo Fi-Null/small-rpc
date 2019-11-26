@@ -1,4 +1,4 @@
-package com.small.rpc.remoting.net.netty_http;
+package com.small.rpc.remoting.net.netty_http.client;
 
 import com.small.rpc.remoting.invoker.RpcInvokerFactory;
 import com.small.rpc.remoting.net.param.HeartBeat;

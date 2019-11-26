@@ -1,4 +1,4 @@
-package com.small.rpc.remoting.net.netty_http;
+package com.small.rpc.remoting.net.netty_http.client;
 
 import com.small.rpc.remoting.net.Client;
 import com.small.rpc.remoting.net.ConnectClient;

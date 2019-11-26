@@ -1,10 +1,10 @@
 package com.small.rpc.remoting.invoker.reference;
 
-import com.small.rpc.remoting.invoker.generic.RpcGenericService;
 import com.small.rpc.remoting.invoker.RpcInvokerFactory;
 import com.small.rpc.remoting.invoker.call.CallType;
 import com.small.rpc.remoting.invoker.call.RpcInvokeCallback;
 import com.small.rpc.remoting.invoker.call.RpcInvokeFuture;
+import com.small.rpc.remoting.invoker.generic.RpcGenericService;
 import com.small.rpc.remoting.invoker.route.LoadBalance;
 import com.small.rpc.remoting.net.Client;
 import com.small.rpc.remoting.net.netty.client.NettyClient;

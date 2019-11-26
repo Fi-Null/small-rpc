@@ -8,11 +8,14 @@ package com.small.rpc.remoting.invoker.route;
  * @Version 1.0
  **/
 public enum LoadBalance {
-    RANDOM(new RpcLoadBalanceRandomStrategy());
-//    ROUND(new RpcLoadBalanceRoundStrategy()),
-//    LRU(new RpcLoadBalanceLRUStrategy()),
-//    LFU(new RpcLoadBalanceLFUStrategy()),
-//    CONSISTENT_HASH(new RpcLoadBalanceConsistentHashStrategy());
+    /**
+     *
+     */
+    RANDOM(new RpcLoadBalanceRandomStrategy()),
+    ROUND(new RpcLoadBalanceRoundStrategy()),
+    LRU(new RpcLoadBalanceLRUStrategy()),
+    LFU(new RpcLoadBalanceLFUStrategy()),
+    CONSISTENT_HASH(new RpcLoadBalanceConsistentHashStrategy());
 
 
     public final RpcLoadBalance rpcInvokerRouter;
@@ -30,4 +33,26 @@ public enum LoadBalance {
         }
         return defaultRouter;
     }
+
+     /*public static void main(String[] args) {
+        String serviceKey = "service";
+        TreeSet<String> addressSet = new TreeSet<String>(){{
+            add("1");
+            add("2");
+            add("3");
+            add("4");
+            add("5");
+        }};
+
+        for (LoadBalance item : LoadBalance.values()) {
+            long start = System.currentTimeMillis();
+            for (int i = 0; i < 100000; i++) {
+                String address = LoadBalance.LFU.rpcInvokerRouter.route(serviceKey, addressSet);
+                //System.out.println(address);;
+            }
+            long end = System.currentTimeMillis();
+            System.out.println(item.name() + " --- " + (end-start));
+        }
+
+    }*/
 }
