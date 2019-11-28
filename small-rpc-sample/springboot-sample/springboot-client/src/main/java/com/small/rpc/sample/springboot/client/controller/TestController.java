@@ -2,7 +2,9 @@ package com.small.rpc.sample.springboot.client.controller;
 
 import com.small.rpc.remoting.invoker.annotation.SmallRpcReference;
 import com.small.rpc.sample.springboot.api.DemoService;
+import com.small.rpc.sample.springboot.api.TestService;
 import com.small.rpc.sample.springboot.api.dto.UserDTO;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -13,10 +15,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @description
  * @createDate 11/27/19 2:19 PM
  */
+@Controller
 public class TestController {
 
     @SmallRpcReference
     private DemoService demoService;
+
+    @SmallRpcReference
+    private TestService testService;
 
 
     @RequestMapping("/test")

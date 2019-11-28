@@ -131,7 +131,7 @@
                 <configuration>
                     <encoding>UTF-8</encoding>
                     <compilerArguments>
-                        <extdirs>${basedir}/src/main/lib</extdirs>
+                        <extdirs>${project.basedir}/src/main/lib</extdirs>
                     </compilerArguments>
                 </configuration>
             </plugin>

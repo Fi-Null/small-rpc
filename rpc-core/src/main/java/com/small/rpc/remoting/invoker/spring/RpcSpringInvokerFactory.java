@@ -53,7 +53,7 @@ public class RpcSpringInvokerFactory extends InstantiationAwareBeanPostProcessor
     @Override
     public void afterPropertiesSet() throws Exception {
         // start invoker factory
-        RpcInvokerFactory rpcInvokerFactory = new RpcInvokerFactory(serviceRegistryClass, serviceRegistryParam);
+        rpcInvokerFactory = new RpcInvokerFactory(serviceRegistryClass, serviceRegistryParam);
         rpcInvokerFactory.start();
     }
 
