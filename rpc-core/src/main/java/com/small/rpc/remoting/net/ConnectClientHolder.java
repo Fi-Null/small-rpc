@@ -70,7 +70,7 @@ public class ConnectClientHolder {
             }
 
             // set pool
-            ConnectClient connectClient_new = connectClientImpl.newInstance();
+            ConnectClient connectClient_new = connectClientImpl.getDeclaredConstructor().newInstance();
             try {
                 connectClient_new.init(address, rpcReferenceBean.getSerializerInstance(), rpcReferenceBean.getInvokerFactory());
                 connectClientMap.put(address, connectClient_new);

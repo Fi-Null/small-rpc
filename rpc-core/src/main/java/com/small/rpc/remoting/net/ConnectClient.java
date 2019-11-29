@@ -26,7 +26,7 @@ public abstract class ConnectClient {
 
     public abstract boolean isValidate();
 
-    public abstract void send(RpcRequest RpcRequest) throws Exception;
+    public abstract void send(RpcRequest rpcRequest) throws Exception;
 
 
     // ---------------------- client pool map ----------------------
@@ -34,16 +34,16 @@ public abstract class ConnectClient {
     /**
      * async send
      */
-    public static void asyncSend(RpcRequest RpcRequest, String address,
+    public static void asyncSend(RpcRequest rpcRequest, String address,
                                  Class<? extends ConnectClient> connectClientImpl,
-                                 final RpcReferenceBean RpcReferenceBean) throws Exception {
+                                 final RpcReferenceBean rpcReferenceBean) throws Exception {
 
         // client pool	[tips03 : may save 35ms/100invoke if move it to constructor, but it is necessary. cause by ConcurrentHashMap.get]
-        ConnectClient clientPool = ConnectClientHolder.getPool(address, connectClientImpl, RpcReferenceBean);
+        ConnectClient clientPool = ConnectClientHolder.getPool(address, connectClientImpl, rpcReferenceBean);
 
         try {
             // do invoke
-            clientPool.send(RpcRequest);
+            clientPool.send(rpcRequest);
         } catch (Exception e) {
             throw e;
         }
