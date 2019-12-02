@@ -16,7 +16,7 @@ public abstract class RpcInvokeCallback<T> {
 
     // ---------------------- thread invoke callback ----------------------
 
-    private static ThreadLocal<RpcInvokeCallback> threadInvokerFuture = new ThreadLocal<>();
+    private static ThreadLocal<RpcInvokeCallback> threadInvokerCallBack = new ThreadLocal<>();
 
     /**
      * get callback
@@ -24,8 +24,8 @@ public abstract class RpcInvokeCallback<T> {
      * @return
      */
     public static RpcInvokeCallback getCallback() {
-        RpcInvokeCallback invokeCallback = threadInvokerFuture.get();
-        threadInvokerFuture.remove();
+        RpcInvokeCallback invokeCallback = threadInvokerCallBack.get();
+        threadInvokerCallBack.remove();
         return invokeCallback;
     }
 
@@ -35,14 +35,13 @@ public abstract class RpcInvokeCallback<T> {
      * @param invokeCallback
      */
     public static void setCallback(RpcInvokeCallback invokeCallback) {
-        threadInvokerFuture.set(invokeCallback);
+        threadInvokerCallBack.set(invokeCallback);
     }
 
     /**
      * remove future
      */
     public static void removeCallback() {
-        threadInvokerFuture.remove();
+        threadInvokerCallBack.remove();
     }
-
 }
